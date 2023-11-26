@@ -3,6 +3,7 @@ interface NavLink {
   path: string;
 }
 export interface Movie {
+  id: number;
   title: string;
   year: string;
   category: string;
@@ -10,10 +11,13 @@ export interface Movie {
   description?: string;
   length?: string;
   rating?: string;
+  isLiked?: boolean;
 }
 import tokyo_img from "../assets/tokyo_train.png";
 export const trendingMovies: Movie[] = [
   {
+    isLiked: false,
+    id: 1,
     title: "Tokyo Train",
     year: "2020",
     category: "Action Comedy",
@@ -24,6 +28,9 @@ export const trendingMovies: Movie[] = [
     rating: "8.5",
   },
   {
+    isLiked: false,
+
+    id: 2,
     title: "Tokyo Train",
     year: "2020",
     category: "Action Comedy",
@@ -34,6 +41,9 @@ export const trendingMovies: Movie[] = [
     rating: "8.5",
   },
   {
+    isLiked: false,
+
+    id: 3,
     title: "Tokyo Train",
     year: "2020",
     category: "Action Comedy",
@@ -44,6 +54,9 @@ export const trendingMovies: Movie[] = [
     rating: "8.5",
   },
   {
+    isLiked: false,
+
+    id: 4,
     title: "Tokyo Train",
     year: "2020",
     category: "Action Comedy",

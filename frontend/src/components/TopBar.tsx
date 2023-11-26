@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { FaSearch, FaRegBell, FaRegUser } from "react-icons/fa";
 const TopBar = () => {
   return (
-    <div className="text-white flex justify-between">
-      <div className="">
+    <div className="text-white text-3xl flex justify-between">
+      <div className=""> 
         <ul className="flex gap-4">
           <li>
             <Link to="/movies">Movies</Link>

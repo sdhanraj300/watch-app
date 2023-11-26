@@ -30,7 +30,7 @@ const SideBar = () => {
           <li>
             <Link
               className="flex items-center gap-4 hover:text-gray-300"
-              to="/favorite"
+              to="/favorites"
             >
               <FaRegHeart className="text-xl" />
               <p>Favorites</p>

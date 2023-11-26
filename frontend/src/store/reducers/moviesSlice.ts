@@ -1,18 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Movie } from "../../utils/constants";
+import { trendingMovies } from "../../utils/constants";
 
-interface Movie {
-  id: number;
-  // Add other properties based on your actual movie structure
+export interface MoviesState {
+  allMovies: [];
+  favoriteMovies: [];
 }
 
-interface MoviesState {
-  allMovies: Movie[];
-  favoriteMovies: Movie[];
-}
-
-const initialState: MoviesState = {
-  allMovies: [], // Your array of movies
-  favoriteMovies: [],
+const initialState = {
+  allMovies : trendingMovies,
+  favoriteMovies : trendingMovies,
 };
 
 const moviesSlice = createSlice({
@@ -22,9 +19,9 @@ const moviesSlice = createSlice({
     addToFavorites: (state, action: PayloadAction<Movie>) => {
       state.favoriteMovies.push(action.payload);
     },
-    removeFromFavorites: (state, action: PayloadAction<Movie>) => {
+    removeFromFavorites: (state, action: PayloadAction<number>) => {
       state.favoriteMovies = state.favoriteMovies.filter(
-        (movie) => movie.id !== action.payload.id
+        (movie) => movie.id !== action.payload
       );
     },
   },
