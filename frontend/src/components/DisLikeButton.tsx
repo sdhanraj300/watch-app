@@ -1,4 +1,4 @@
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 interface LikeButtonProps {
   size?: string;
@@ -7,14 +7,14 @@ interface LikeButtonProps {
   isLiked?: boolean;
 }
 
-const LikeButton = ({ size, isLiked }: LikeButtonProps) => {
+const DisLikeButton = ({ size, isLiked }: LikeButtonProps) => {
   return (
     <div>
       <div className={`${size} bg-black rounded-lg flex`}>
-        <FaRegHeart className="mt-auto mb-auto ml-auto mr-auto" />
+        <FaHeart className="mt-auto mb-auto ml-auto mr-auto" />
       </div>
     </div>
   );
 };
 
-export default LikeButton;
+export default DisLikeButton;

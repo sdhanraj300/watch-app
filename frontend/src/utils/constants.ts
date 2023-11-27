@@ -29,7 +29,6 @@ export const trendingMovies: Movie[] = [
   },
   {
     isLiked: false,
-
     id: 2,
     title: "Tokyo Train",
     year: "2020",
@@ -42,7 +41,6 @@ export const trendingMovies: Movie[] = [
   },
   {
     isLiked: false,
-
     id: 3,
     title: "Tokyo Train",
     year: "2020",
@@ -55,7 +53,6 @@ export const trendingMovies: Movie[] = [
   },
   {
     isLiked: false,
-
     id: 4,
     title: "Tokyo Train",
     year: "2020",

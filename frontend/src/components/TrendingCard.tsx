@@ -1,48 +1,57 @@
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../store/reducers/moviesSlice";
+import { Movie } from "../utils/constants";
+import DisLikeButton from "./DisLikeButton";
 import LikeButton from "./LikeButton";
+import { useSelector, useDispatch } from "react-redux";
 
 interface TrendingCardProps {
-  title: string;
-  year: string;
-  category: string;
-  image: string;
-  ifClicked?: boolean;
+  movie: Movie;
 }
-const TrendingCard = ({
-  title,
-  year,
-  category,
-  image,
-  ifClicked,
-}: TrendingCardProps) => {
-  const backgroundStyle: React.CSSProperties = {
-    background: `url(${image})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+const TrendingCard = ({ movie }: TrendingCardProps) => {
+  const dispatch = useDispatch();
+
+  const onClickLike = () => {
+    const updatedMovie = { ...movie, isLiked: true };
+    dispatch(addToFavorites(updatedMovie));
   };
+
+  const onClickDislike = () => {
+    dispatch(removeFromFavorites(movie.id));
+  };
+
+  const isLiked = useSelector(
+    (state: { movies: { allMovies: Movie[] } }) =>
+      state.movies.allMovies.find((m: Movie) => m.id === movie.id)?.isLiked
+  );
+
   return (
     <div
-      style={backgroundStyle}
-      className={`h-[30vh] w-[15vw] rounded-md border-2 ${
-        ifClicked ? `h-[40vh] w-[35vw]` : ""
-      }`}
+      style={{
+        background: `url(${movie.image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="h-[30vh] w-[15vw] rounded-md border-2 flex flex-col justify-between"
     >
-      <div className="">
-        <LikeButton
-          size={`h-[40px] w-[40px] ${
-            ifClicked ? "ml-[33rem]" : ""
-          } ml-[190px] mt-2`}
-        />
+      <div className="flex justify-between">
+        <div></div>
+        <button onClick={isLiked ? onClickDislike : onClickLike}>
+          {isLiked ? (
+            <DisLikeButton size={`h-[50px] w-[50px] mt-2`} />
+          ) : (
+            <LikeButton size={`h-[50px] w-[50px] mt-2`} />
+          )}
+        </button>
       </div>
-      <div
-        className={`bg-gradient-to-r from-white to-gray-400 opacity-90 rounded-md ${
-          ifClicked ? "mt-[248px]" : ""
-        } mt-[160px]`}
-      >
+      <div className="bg-gradient-to-r from-white to-gray-400 opacity-90 rounded-md">
         <div className="flex flex-col p-2 gap-2 text-black">
-          <p className=" font-bold text-xl">{title}</p>
-          <p className="">
-            {year} {" | "}
-            {category}
+          <p className="font-bold text-xl">{movie.title}</p>
+          <p>
+            {movie.year} {" | "}
+            {movie.category}
           </p>
         </div>
       </div>

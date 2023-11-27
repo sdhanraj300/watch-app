@@ -4,12 +4,10 @@ import { trendingMovies } from "../../utils/constants";
 
 export interface MoviesState {
   allMovies: [];
-  favoriteMovies: [];
 }
 
 const initialState = {
-  allMovies : trendingMovies,
-  favoriteMovies : trendingMovies,
+  allMovies: trendingMovies,
 };
 
 const moviesSlice = createSlice({
@@ -17,11 +15,13 @@ const moviesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action: PayloadAction<Movie>) => {
-      state.favoriteMovies.push(action.payload);
+      state.allMovies = state.allMovies.map((movie) =>
+        movie.id === action.payload.id ? { ...movie, isLiked: true } : movie
+      );
     },
     removeFromFavorites: (state, action: PayloadAction<number>) => {
-      state.favoriteMovies = state.favoriteMovies.filter(
-        (movie) => movie.id !== action.payload
+      state.allMovies = state.allMovies.map((movie) =>
+        movie.id === action.payload ? { ...movie, isLiked: false } : movie
       );
     },
   },

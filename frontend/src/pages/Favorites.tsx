@@ -1,16 +1,28 @@
 import SideBar from "../components/SideBar";
-import { useSelector } from "react-redux";
-import { MoviesState } from "../store/reducers/moviesSlice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  MoviesState,
+  addToFavorites,
+  removeFromFavorites,
+} from "../store/reducers/moviesSlice";
 import { Movie } from "../utils/constants";
 import LikeButton from "../components/LikeButton";
 import TopBar from "../components/TopBar";
+import DisLikeButton from "../components/DisLikeButton";
 
 const Favorites = () => {
-  const favoriteMovies = useSelector(
-    (state: MoviesState) => state.movies.favoriteMovies
+  const dispatch = useDispatch();
+  const movies = useSelector(
+    (state: { movies: { allMovies: Movie[] } }) => state.movies.allMovies
   );
-
-  console.log(favoriteMovies);
+  const favoriteMovies = movies.filter((movie: Movie) => movie.isLiked);
+  const onLikeClick = (movie: Movie) => {
+    if (movie.isLiked) {
+      dispatch(removeFromFavorites(movie.id));
+    } else {
+      dispatch(addToFavorites(movie));
+    }
+  };
 
   return (
     <div className="">
@@ -31,7 +43,7 @@ const Favorites = () => {
       >
         <TopBar />
       </div>
-      <div className="ml-[20vw] flex-col flex-wrap gap-4 p-4 h-screen overflow-hidden bg-black">
+      <div className="ml-[19vw] flex-col flex-wrap gap-4 p-4 h-screen overflow-hidden bg-black">
         <p className="text-white text-4xl p-3">Favorites</p>
         <div className="flex flex-row flex-wrap gap-10">
           {favoriteMovies.map((movie: Movie) => {
@@ -40,17 +52,25 @@ const Favorites = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             };
+
             return (
               <div
                 key={movie.id}
                 style={backgroundStyle}
                 className="h-[30vh] w-[20vw] rounded-md"
               >
-                <div className="">
-                  <LikeButton size="h-[40px] w-[40px] ml-[190px] mt-2" />
+                <div className="flex justify-between text-white">
+                  <div className=""></div>
+                  <button onClick={() => onLikeClick(movie)}>
+                    {movie.isLiked ? (
+                      <DisLikeButton size={`h-[50px] w-[50px] mt-2`} />
+                    ) : (
+                      <LikeButton size={`h-[50px] w-[50px] mt-2`} />
+                    )}
+                  </button>
                 </div>
                 <div className="bg-gradient-to-r from-white to-gray-400 opacity-90 rounded-md mt-[160px]">
-                  <div className="flex flex-col p-2 gap-2 text-black">
+                  <div className="flex flex-col p-2 gap-2 ">
                     <p className="font-bold text-xl">{movie.title}</p>
                     <p>
                       {movie.year} {" | "}

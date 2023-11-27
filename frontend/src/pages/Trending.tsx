@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import TopBar from "../components/TopBar";
 import TrendingBigCard from "../components/TrendingBigCard";
 import TrendingCard from "../components/TrendingCard";
-import { Movie, trendingMovies } from "../utils/constants";
-
+import { Movie } from "../utils/constants";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 const Trending = () => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
@@ -15,7 +15,9 @@ const Trending = () => {
   const handleCloseClick = () => {
     setSelectedMovie(null);
   };
-
+  const movies = useSelector(
+    (state: { movies: { allMovies: Movie[] } }) => state.movies.allMovies
+  );
   return (
     <div className="bg-black h-screen">
       <div
@@ -38,17 +40,10 @@ const Trending = () => {
       <div className="flex flex-col gap-8 trending ml-[22vw] text-white mt-10">
         <span className="font-bold text-xl">Trending At This Moment</span>
         <div className="flex xsm:flex-row flex-col gap-10 flex-wrap">
-          {trendingMovies.map((movie) => (
-            <div key={movie.title}>
+          {movies.map((movie: Movie) => (
+            <div key={movie.id}>
               <button onClick={() => handleCardClick(movie)}>
-                <TrendingCard
-                  key={movie.title}
-                  title={movie.title}
-                  year={movie.year}
-                  category={movie.category}
-                  image={movie.image}
-                  ifClicked={false}
-                />
+                <TrendingCard movie={movie} />
               </button>
             </div>
           ))}
@@ -57,7 +52,7 @@ const Trending = () => {
       {selectedMovie && (
         <div className="ml-[20vw] w-[70vw] ">
           <button onClick={handleCloseClick}>Close Enlarged Card</button>
-          <TrendingBigCard {...selectedMovie} />
+          <TrendingBigCard movie={selectedMovie} />
         </div>
       )}
     </div>
