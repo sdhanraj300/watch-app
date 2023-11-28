@@ -19,7 +19,7 @@ const Trending = () => {
     (state: { movies: { allMovies: Movie[] } }) => state.movies.allMovies
   );
   return (
-    <div className="bg-black h-screen">
+    <div className="bg-black md:h-full lg:h-full">
       <div
         style={{
           backgroundColor: "#21201E",
@@ -37,7 +37,7 @@ const Trending = () => {
       >
         <TopBar />
       </div>
-      <div className="flex flex-col gap-8 trending ml-[22vw] text-white mt-10">
+      <div className="flex flex-col gap-8 trending md:ml-[30vw] lg:ml-[22vw] sm:ml-[50vw] md:h-full lg:h-screen text-white mt-10">
         <span className="font-bold text-xl">Trending At This Moment</span>
         <div className="flex xsm:flex-row flex-col gap-10 flex-wrap">
           {movies.map((movie: Movie) => (
@@ -50,7 +50,7 @@ const Trending = () => {
         </div>
       </div>
       {selectedMovie && (
-        <div className="ml-[20vw] w-[70vw] ">
+        <div className="md:ml-[30vw] sm:ml-[35vw] lg:ml-[20vw] w-[60vw] ">
           <button onClick={handleCloseClick}>Close Enlarged Card</button>
           <TrendingBigCard movie={selectedMovie} />
         </div>

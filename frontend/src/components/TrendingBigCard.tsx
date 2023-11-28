@@ -30,7 +30,7 @@ const TrendingBigCard: React.FC<TrendingBigCardProps> = ({ movie }) => {
   };
 
   return (
-    <div className="flex flex-row ml-10">
+    <div className="flex lg:mt-[-200px] md:flex-row sm:flex-col md:gap-10 ml-10">
       <img
         src={movie.image}
         className="h-[25rem] w-[30rem] object-contain"

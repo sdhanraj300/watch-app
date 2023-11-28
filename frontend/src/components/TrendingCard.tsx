@@ -34,7 +34,7 @@ const TrendingCard = ({ movie }: TrendingCardProps) => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="h-[30vh] w-[15vw] rounded-md border-2 flex flex-col justify-between"
+      className="md:h-[30vh] sm:w-[40vw] sm:h-[50vh] md:w-[50vw] lg:w-[20vw]  rounded-md border-2 flex flex-col justify-between"
     >
       <div className="flex justify-between">
         <div></div>

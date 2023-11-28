@@ -24,17 +24,17 @@ const HomePage: React.FC = () => {
           backgroundColor: "#21201E",
           boxShadow: "2px 0px 90px 0px rgba(97, 0, 194, 0.4)",
         }}
-        className="h-screen hidden fixed xsm:block xsm:w-1/3 md:w-1/4 sm:1/3 lg:w-1/5"
+        className="h-screen hidden fixed xsm:block"
       >
         <SideBar />
       </div>
-      <div className="flex flex-col xsm:ml-[19vw]">
+      <div className="flex flex-col ml-[20vw]">
         <div className="text-xl flex flex-col" style={backgroundStyle}>
           <div
             style={{
               boxShadow: "0px 2px 90px 0px rgba(97, 0, 194, 0.4)",
             }}
-            className="h-[8vh] mt-2 pl-10 pt-5"
+            className="h-[8vh] pt-5"
           >
             <TopBar />
           </div>
