@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    zIndex: -1,
   };
   const movies = useSelector(
     (state: { movies: { allMovies: Movie[] } }) => state.movies.allMovies

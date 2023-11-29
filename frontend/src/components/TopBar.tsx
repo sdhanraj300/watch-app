@@ -3,7 +3,7 @@ import { FaSearch, FaRegBell, FaRegUser } from "react-icons/fa";
 const TopBar = () => {
   return (
     <div className="text-white text-3xl flex justify-between">
-      <div className=""> 
+      <div className="">
         <ul className="flex gap-4">
           <li>
             <Link to="/movies">Movies</Link>
@@ -19,10 +19,11 @@ const TopBar = () => {
       <div className="flex mr-10 items-center gap-4">
         <FaSearch />
         <FaRegBell />
-        <div className="flex items-center gap-2 rounded-md bg-purple-700 p-2">
-          <FaRegUser />
-          <p>Pookie Bear</p>
-        </div>
+        <button>
+          <Link to="/userprofile">
+            <FaRegUser />
+          </Link>
+        </button>
       </div>
     </div>
   );
